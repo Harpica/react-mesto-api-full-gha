@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.15.37
+IP 51.250.15.37
 
 Frontend https://mesto.harpica.nomoredomains.monster
 
