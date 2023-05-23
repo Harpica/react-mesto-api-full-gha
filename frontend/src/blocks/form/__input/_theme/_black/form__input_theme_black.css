@@ -1,0 +1,12 @@
+.form__input_theme_black {
+  border-bottom: 2px solid #cccccc;
+  color: #cccccc;
+  background-color: black;
+}
+
+.form__input_theme_black:-webkit-autofill,
+.form__input_theme_black:-webkit-autofill:hover,
+.form__input_theme_black:-webkit-autofill:focus {
+  -webkit-text-fill-color: #cccccc;
+  -webkit-box-shadow: 0 0 0px 40rem black inset;
+}

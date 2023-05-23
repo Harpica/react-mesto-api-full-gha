@@ -1,0 +1,18 @@
+.login-container {
+  max-height: 100%;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: minmax(260px, 358px);
+  grid-template-rows: 1fr min-content;
+  gap: 20px;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    padding: 40px 30px;
+  }
+}

@@ -1,0 +1,25 @@
+.form__input {
+  width: 100%;
+  max-width: 358px;
+  box-sizing: border-box;
+  border: none;
+  padding: 0 0 9px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: #000000;
+
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.form__input:-webkit-autofill,
+.form__input:-webkit-autofill:hover,
+.form__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 40rem #ffff inset;
+}

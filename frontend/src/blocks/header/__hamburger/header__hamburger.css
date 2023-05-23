@@ -1,0 +1,14 @@
+.header__hamburger {
+  display: none;
+  align-self: flex-end;
+  height: 21px;
+  width: 24px;
+  background: url(../../../images/Hamburger-menu.svg) no-repeat;
+}
+
+@media screen and (max-width: 600px) {
+  .header__hamburger {
+    display: block;
+    transition: 0.4s;
+  }
+}
