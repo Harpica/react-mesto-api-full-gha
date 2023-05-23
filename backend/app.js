@@ -21,7 +21,7 @@ app.use(
     origin: CLIENT_URL,
     credentials: true,
     optionSuccessStatus: 200,
-  })
+  }),
 );
 app.use(cookieParser());
 
@@ -35,11 +35,9 @@ app.use('/', routes);
 // Connect to db and after successfull connection - start listening to the PORT
 mongoose
   .connect(`mongodb://localhost:${DATABASE_PORT}/${DATABASE_NAME}`)
-  .then(() =>
-    app.listen(PORT, () => {
-      console.log('Listening to', PORT);
-    })
-  )
+  .then(() => app.listen(PORT, () => {
+    console.log('Listening to', PORT);
+  }))
   .catch((err) => {
     console.error('message:', err.message);
   });
