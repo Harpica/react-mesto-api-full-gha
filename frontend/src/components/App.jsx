@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRouteElement from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
@@ -43,8 +43,6 @@ function App() {
 
   const handleLoggedInCheck = useCallback(() => {
     setIsLoading(true);
-    // const token = JSON.parse(window.localStorage.getItem('user')).token;
-    // if (token) {
     authApi
       .getUserData()
       .then(() => {
@@ -56,10 +54,6 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
-    // } else {
-    //   console.log('Token is undefined');
-    //   setIsLoading(false);
-    // }
   }, [setIsLoading, setLoggedIn]);
 
   // Checking if browser already has token in localStorage (so user doesn't need to sign in)
@@ -109,8 +103,7 @@ function App() {
     setIsLoading(true);
     return authApi
       .registerUser(values)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setTooltipStatus('success');
         setTooltipOpen(true);
         navigate('/sign-in');
@@ -118,16 +111,23 @@ function App() {
       .catch((err) => {
         setTooltipStatus('failure');
         setTooltipOpen(true);
-
         console.log(err);
       })
       .finally(() => setIsLoading(false));
   }
 
   function handleLogout() {
-    setLoggedIn(false);
-    setUser({});
-    clearCookies();
+    authApi
+      .logoutUser()
+      .then(() => {
+        setLoggedIn(false);
+        setUser({});
+      })
+      .catch((err) => {
+        setTooltipStatus('failure');
+        setTooltipOpen(true);
+        console.log(err);
+      });
   }
 
   function handleEditAvatarClick() {
@@ -157,7 +157,6 @@ function App() {
     setSelectedCard({});
   }
   function handleCardLike(card) {
-    console.log(card);
     const isLiked = card.likes.some((i) => i === currentUser._id);
     cardsApi
       .changeLikeCardStatus(card._id, isLiked)
@@ -282,6 +281,7 @@ function App() {
               </ProtectedRouteElement>
             }
           />
+          <Route path='*' element={<Navigate to='/' />} />
         </Routes>
         {/* секция попапа для изменения данных профиля  */}
         <EditProfilePopup

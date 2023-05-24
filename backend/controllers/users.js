@@ -17,7 +17,7 @@ export const getUsers = (_req, res, next) => {
 const findUserById = (id, res, next) => {
   User.findById(id)
     .orFail(
-      new DocumentNotFoundError('Пользователь по указанному _id не найден'),
+      new DocumentNotFoundError('Пользователь по указанному _id не найден')
     )
     .then((user) => {
       res.send({ data: user });
@@ -57,8 +57,8 @@ export const createUser = (req, res, next) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(
           new BadRequestError(
-            'Переданы некорректные данные при создании пользователя',
-          ),
+            'Переданы некорректные данные при создании пользователя'
+          )
         );
         return;
       }
@@ -81,6 +81,10 @@ export const loginUser = async (req, res, next) => {
     .catch(next);
 };
 
+export const logoutUser = (_req, res, _next) => {
+  res.clearCookie('jwt', { httpOnly: true }).send({ message: 'Token cleared' });
+};
+
 export const updateUser = (req, res, next) => {
   const { name, about } = req.body;
   const id = req.user._id;
@@ -90,10 +94,10 @@ export const updateUser = (req, res, next) => {
     {
       new: true,
       runValidators: true,
-    },
+    }
   )
     .orFail(
-      new DocumentNotFoundError('Пользователь по указанному _id не найден'),
+      new DocumentNotFoundError('Пользователь по указанному _id не найден')
     )
     .then((user) => {
       res.send({ data: user });
@@ -102,8 +106,8 @@ export const updateUser = (req, res, next) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(
           new BadRequestError(
-            'Переданы некорректные данные при обновлении профиля',
-          ),
+            'Переданы некорректные данные при обновлении профиля'
+          )
         );
         return;
       }
@@ -120,10 +124,10 @@ export const updateAvatar = (req, res, next) => {
     {
       new: true,
       runValidators: true,
-    },
+    }
   )
     .orFail(
-      new DocumentNotFoundError('Пользователь по указанному _id не найден'),
+      new DocumentNotFoundError('Пользователь по указанному _id не найден')
     )
     .then((user) => {
       res.send({ data: user });
@@ -132,8 +136,8 @@ export const updateAvatar = (req, res, next) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(
           new BadRequestError(
-            'Переданы некорректные данные при обновлении аватара',
-          ),
+            'Переданы некорректные данные при обновлении аватара'
+          )
         );
         return;
       }

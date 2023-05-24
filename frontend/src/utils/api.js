@@ -36,6 +36,9 @@ class AuthApi extends Api {
       body: JSON.stringify({ email: email, password: password }),
     });
   }
+  logoutUser() {
+    return this._request(`${this.baseUrl}/logout`);
+  }
   getUserData() {
     const request = this._request(`${this.baseUrl}/users/me`, {
       method: 'GET',

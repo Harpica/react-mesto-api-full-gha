@@ -4,7 +4,6 @@ import UnauthorizedError from '../utils/errors/UnauthorizedError.js';
 
 const auth = (req, _res, next) => {
   try {
-    console.log(req.cookies);
     const token = req.cookies.jwt;
     const payload = jwt.verify(token, JWT_KEY);
     req.user = payload;
