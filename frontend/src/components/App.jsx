@@ -18,7 +18,6 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import { cardsApi } from '../utils/api';
 import { authApi } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { clearCookies } from '../utils/utils';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
