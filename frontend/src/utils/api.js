@@ -103,7 +103,6 @@ class CardsApi extends Api {
 export const cardsApi = new CardsApi({
   baseUrl: `${SERVER_URL}`,
   headers: {
-    // authorization: '28c8be99-8fcb-4f8e-afaa-96e6bec99f34',
     'Access-Control-Request-Credentials': 'true',
     'Content-Type': 'application/json',
   },

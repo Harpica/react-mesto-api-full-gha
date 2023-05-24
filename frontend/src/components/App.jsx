@@ -18,6 +18,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import { cardsApi } from '../utils/api';
 import { authApi } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { clearCookies } from '../utils/utils';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -126,6 +127,7 @@ function App() {
   function handleLogout() {
     setLoggedIn(false);
     setUser({});
+    clearCookies();
   }
 
   function handleEditAvatarClick() {
@@ -241,7 +243,10 @@ function App() {
               isLoading ? (
                 <></>
               ) : (
-                <ProtectedRouteElement loggedIn={loggedIn}>
+                <ProtectedRouteElement
+                  statement={loggedIn === true}
+                  redirect={'/sign-in'}
+                >
                   <Main
                     cards={cards}
                     onEditProfile={handleEditProfileClick}
@@ -258,12 +263,24 @@ function App() {
           <Route
             path='/sign-up'
             element={
-              <Register onRegister={handleRegister} isLoading={isLoading} />
+              <ProtectedRouteElement
+                statement={loggedIn === false}
+                redirect={'/'}
+              >
+                <Register onRegister={handleRegister} isLoading={isLoading} />
+              </ProtectedRouteElement>
             }
           />
           <Route
             path='/sign-in'
-            element={<Login onLogin={handleLogin} isLoading={isLoading} />}
+            element={
+              <ProtectedRouteElement
+                statement={loggedIn === false}
+                redirect={'/'}
+              >
+                <Login onLogin={handleLogin} isLoading={isLoading} />
+              </ProtectedRouteElement>
+            }
           />
         </Routes>
         {/* секция попапа для изменения данных профиля  */}

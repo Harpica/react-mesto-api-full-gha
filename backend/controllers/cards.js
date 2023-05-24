@@ -6,6 +6,7 @@ import Card from '../models/card.js';
 
 export const getCards = (_req, res, next) => {
   Card.find({})
+    .sort({ createdAt: -1 })
     .then((cards) => {
       res.send({ data: cards });
     })

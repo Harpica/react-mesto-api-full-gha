@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router';
 
-const ProtectedRouteElement = ({ loggedIn, children }) => {
-  return loggedIn ? <>{children}</> : <Navigate to='/sign-in' />;
+const ProtectedRouteElement = ({ statement, children, redirect }) => {
+  return statement ? <>{children}</> : <Navigate to={redirect} />;
 };
 
 export default ProtectedRouteElement;
