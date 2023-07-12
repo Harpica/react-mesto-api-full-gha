@@ -8,10 +8,4 @@
 
 Адрес репозитория: https://github.com/Harpica/react-mesto-api-full-gha
 
-## Ссылки на проект
 
-IP 51.250.15.37
-
-Frontend https://mesto.harpica.nomoredomains.monster
-
-Backend https://api.mesto.harpica.nomoredomains.monster
